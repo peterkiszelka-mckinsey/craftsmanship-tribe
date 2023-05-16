@@ -8,7 +8,9 @@
     "test:lint": "eslint-output ./src",
     "test:unit": "jest ./src/test",
     "test:mutation": "npm run clean && stryker run --incremental",
-    "test": "npm run clean && npm run test:lint && npm run test:unit && npm run test:mutation"
+    "test:all": "npm run clean && npm run test:lint && npm run test:unit && npm run test:mutation",
+    "precommit": "npm run test:lint",
+    "prepush": "npm run test:all"
   },
   "repository": {
     "type": "git",

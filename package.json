@@ -1,0 +1,14 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "prepare": "husky install",
+    "all:install": "lerna exec -- npm install",
+    "all:precommit": "lerna run --concurrency 1 --stream precommit --since HEAD --exclude-dependents",
+    "all:prepush": "lerna run --concurrency 1 --stream prepush --since origin/HEAD --exclude-dependents"
+  },
+  "devDependencies": {
+    "husky": "^8.0.1",
+    "lerna": "^6.0.1"
+  }
+}
