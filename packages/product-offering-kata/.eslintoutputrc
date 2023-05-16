@@ -1,0 +1,16 @@
+{
+  "files": ["./src"],
+  "formats": [
+    {
+      "name": "stylish",
+      "output": "console"
+    },
+    {
+      "name": "json-relative",
+      "output": "file",
+      "path": "reports/eslint.json",
+      "id": "json"
+    }
+  ],
+  "eslintConfig": {}
+}

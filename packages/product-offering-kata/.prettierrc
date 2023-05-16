@@ -1,0 +1,11 @@
+{
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "printWidth": 120,
+  "singleQuote": true,
+  "arrowParens": "avoid",
+  "importOrder": ["<THIRD_PARTY_MODULES>", "^[./]"],
+  "importOrderSeparation": false,
+  "importOrderSortSpecifiers": true,
+  "importOrderParserPlugins": ["typescript", "classProperties", "decorators-legacy"]
+}

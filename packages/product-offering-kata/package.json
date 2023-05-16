@@ -1,0 +1,42 @@
+{
+  "name": "craftsmanship-tribe",
+  "description": "This repository serves as a centralized hub for a wide range of educational materials and resources specifically designed to support the learning journey of the Craftsmanship Tribe.",
+  "version": "1.0.0",
+  "main": "main.ts",
+  "scripts": {
+    "clean": "rimraf ./build && rimraf ./.stryker-tmp",
+    "test:unit": "jest ./src/test",
+    "test:mutation": "npm run clean && stryker run --incremental"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/McK-Internal/craftsmanship-tribe.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/McK-Internal/craftsmanship-tribe/issues"
+  },
+  "homepage": "https://github.com/McK-Internal/craftsmanship-tribe#readme",
+  "devDependencies": {
+    "@stryker-mutator/core": "^6.4.2",
+    "@stryker-mutator/jest-runner": "^6.4.2",
+    "@stryker-mutator/typescript-checker": "^6.4.2",
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
+    "@types/jest": "^29.5.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.6",
+    "@typescript-eslint/parser": "^5.59.6",
+    "eslint": "^8.40.0",
+    "eslint-formatter-json-relative": "^0.1.0",
+    "eslint-output": "^3.0.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "jest": "^29.5.0",
+    "prettier": "^2.8.8",
+    "rimraf": "^5.0.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
+    "ttypescript": "^1.5.15",
+    "typescript": "^5.0.4"
+  }
+}
