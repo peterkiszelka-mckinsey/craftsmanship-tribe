@@ -4,7 +4,7 @@ module.exports = {
   testEnvironment: 'node',
   testTimeout: 90000,
   transform: {
-    '.(ts|tsx)$': 'ts-jest'
+    '.(ts|tsx)$': 'ts-jest',
   },
-  rootDir: 'src'
+  rootDir: 'src',
 };
