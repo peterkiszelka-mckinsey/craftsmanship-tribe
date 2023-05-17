@@ -94,7 +94,7 @@ engineering team.
 #### MVP
 
 The Bank would like to expose product offerings like loans and fancy looking debit/credit cards to its customers.
-However, they have regional restrictions on the available countries they can monetize their goods.
+However, they have regional legal restrictions on the available countries where they can monetize their goods.
 
 #### MMP
 
@@ -114,6 +114,7 @@ This kata requires the developer to implement a product offering interface by ex
 - implement additional business needs
 
 As a base implementation, adapters (repositories) are available to handle recommendations and countries using MongoDB.
+On top of that, steps 1) and 2) have already been implemented.  
 
 #### 1) Implement the required features with integration tests
 
@@ -122,16 +123,17 @@ end-to-end.
 
 #### 2) Validate the implementation with unit tests using mocks
 
-The implementation of the first unit tests requires mocking by using `ts-auto-mock`.
+The implementation of the first unit tests requires mocking by using `ts-mockito`.
 
-For example, in case the developer would like to mock `fizz()` method on `FizzBuzzService` interface to return `buzz`,
+For example, in case the developer would like to mock `fizz()` method on `FizzBuzz` interface to return `buzz`,
 this code fragment cracks the case:
 
 ```typescript
-import { createMock } from 'ts-auto-mock';
+import { instance, mock, when } from 'ts-mockito';
 
-const fizzBuzzService = createMock<FizzBuzzService>();
-fizzBuzzService.fizz = jest.fn(async () => `buzz`);
+const fizzBuzzMock = mock<FizzBuzz>();
+const fizzBuzz = instance(fizzBuzzMock);
+when(fizzBuzzService.fizz()).thenResolve('buzz');
 ```
 
 #### 3) Extend product offerings with categories
@@ -147,8 +149,7 @@ The Neerg Bank feels this addition may have a positive effect on their portfolio
 
 #### 4) Instead of mocks, validate the implementation with unit tests using fake implementations
 
-As a practice, let's refactor the written test suite (maybe even by removing the implementation code and redo it with
-TDD).
+As a practice, let's refactor the written test suite.
 
 However, in this case, let's ditch the mocks and use fake implementations of the repository interfaces. We could also
 say that we are black box testing the domain service with no dependencies.
@@ -163,7 +164,6 @@ Can we identify key differences between the two approaches?
 - number of tests
 - reacting to breaking changes
 - simplicity
-- data exposure
 - void-like functionalities
 - acting as a specification
 
