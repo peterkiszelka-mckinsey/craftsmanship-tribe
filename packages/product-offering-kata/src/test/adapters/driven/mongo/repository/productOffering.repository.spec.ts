@@ -1,5 +1,4 @@
 import { MongoProductOfferingRepository } from '../../../../../productOffering/adapters/driven/mongo/repository/mongo.productOffering.repository';
-import { createRepositoryProductOffering } from '../../../../../productOffering/domain/repository/repository.productOffering.model.helpers';
 import { TestDbHandler } from '../../../../../testDbHandler';
 
 describe('Product offerings', () => {
@@ -19,17 +18,27 @@ describe('Product offerings', () => {
   });
 
   test('Creates a product offering', async () => {
-    const productOffering = createRepositoryProductOffering({});
+    const productOffering = { name: '[name]', description: '[description]', note: '[note]', expiration: new Date(420) };
 
     await repository.create(productOffering);
     const result = await repository.getAll();
 
-    expect(result[0]).toMatchObject(productOffering);
+    expect(result).toMatchObject([productOffering]);
   });
 
   test('Gets all created product offerings', async () => {
-    await repository.create(createRepositoryProductOffering({}));
-    await repository.create(createRepositoryProductOffering({}));
+    await repository.create({
+      name: '[name]',
+      description: '[description]',
+      note: '[note]',
+      expiration: new Date(420),
+    });
+    await repository.create({
+      name: '[name]',
+      description: '[description]',
+      note: '[note]',
+      expiration: new Date(420),
+    });
 
     const result = await repository.getAll();
 

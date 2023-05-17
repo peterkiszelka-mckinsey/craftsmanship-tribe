@@ -1,5 +1,4 @@
 import { MongoCountryRepository } from '../../../../../productOffering/adapters/driven/mongo/repository/mongo.country.repository';
-import { createRepositoryCountry } from '../../../../../productOffering/domain/repository/repository.country.model.helpers';
 import { TestDbHandler } from '../../../../../testDbHandler';
 
 describe('Countries', () => {
@@ -19,17 +18,17 @@ describe('Countries', () => {
   });
 
   test('Creates a name country', async () => {
-    const country = createRepositoryCountry({});
+    const country = { name: '[name]' };
 
     await repository.create(country);
     const result = await repository.getAll();
 
-    expect(result[0]).toMatchObject(country);
+    expect(result).toMatchObject([country]);
   });
 
   test('Gets all created countries', async () => {
-    await repository.create(createRepositoryCountry({}));
-    await repository.create(createRepositoryCountry({}));
+    await repository.create({ name: '[name]' });
+    await repository.create({ name: '[name]' });
 
     const result = await repository.getAll();
 
