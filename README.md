@@ -9,7 +9,8 @@ designed to support the learning journey of the Craftsmanship Tribe.
 A live coding session where we'll break down the testing pyramid into layers, explore the benefits and drawbacks of 
 each, and apply them to a bank looking to expand its product offerings across different regions.
 
-Location: `./packages/product-offering-kata`
+Location: `./packages/product-offering-kata`  
+URL: https://github.com/peterkiszelka-mckinsey/craftsmanship-tribe/tree/main/packages/product-offering-kata
 
 ### Introduction to Test-Driven Development by Example
 
