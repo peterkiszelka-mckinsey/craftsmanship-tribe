@@ -6,7 +6,7 @@ export type ProductOffering = {
   readonly expiration: Date;
 };
 
-export type ProductOfferingPartial = {
+export type ProductOfferingCreate = {
   readonly name: string;
   readonly description: string;
   readonly note: string;
