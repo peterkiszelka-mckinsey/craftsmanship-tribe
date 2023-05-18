@@ -26,7 +26,7 @@ npm run test
 production (an in memory database is a good example).
 
 **Stubs** provide canned answers to calls made during the test, usually not responding at all to anything outside what's
-programmed in for the test.
+programmed in for the test. They are similar to fakes, but don't contain working implementation.
 
 **Spies** are stubs that also record some information based on how they were called. One form of this might be an email
 service that records how many messages it was sent.
