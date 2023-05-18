@@ -4,6 +4,22 @@ designed to support the learning journey of the Craftsmanship Tribe.
 
 ## Workshops
 
+### Local development
+
+Run `npm install` in the root of the repo. It will install `lerna` and `husky` for you and install the git hooks.
+
+#### Root npm commands
+
+* `npm run all:install`: runs `npm install` in all package directories
+* `npm run all:precommit`: runs `npm run precommit` in all package directories
+* `npm run all:prepush`: runs `npm run prepush` in all package directories
+
+#### Git hooks
+
+Git hooks will run on every commit and/or push (depending on the package setup).
+Hooks are installed when you run `npm install` in the repo root.
+Hooks will only be triggered on the packages which have changes.
+
 ### Software Testing by Example
 
 A live coding session where we'll break down the testing pyramid into layers, explore the benefits and drawbacks of 
