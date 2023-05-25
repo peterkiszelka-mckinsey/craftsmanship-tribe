@@ -7,6 +7,7 @@ export const createRepositoryProductOffering = ({
   expiration = new Date(420),
   category = '[category]',
   subtitle = '[subtitle]',
+  price = 420,
 }: {
   name?: string;
   description?: string;
@@ -14,6 +15,7 @@ export const createRepositoryProductOffering = ({
   expiration?: Date;
   category?: string;
   subtitle?: string;
+  price?: number;
 }): RepositoryProductOfferingCreate => {
-  return { name, description, note, expiration, category, subtitle };
+  return { name, description, note, expiration, category, subtitle, price };
 };

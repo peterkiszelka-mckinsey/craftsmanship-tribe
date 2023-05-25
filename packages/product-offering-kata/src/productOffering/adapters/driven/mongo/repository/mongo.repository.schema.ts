@@ -13,6 +13,7 @@ export const ProductOfferingSchema = new Schema<RepositoryProductOffering>({
   expiration: { type: Date, required: true },
   category: { type: String, required: true },
   subtitle: { type: String, required: true },
+  price: { type: Number, required: true },
 });
 
 export const CountryModel = mongoose.model('RepositoryCountry', CountrySchema);
