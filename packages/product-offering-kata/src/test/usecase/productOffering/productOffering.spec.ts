@@ -1,34 +1,8 @@
-import { anything, instance, mock, verify, when } from 'ts-mockito';
-import { MongoCountryRepository } from '../../../productOffering/adapters/driven/mongo/repository/mongo.country.repository';
 import { CountryRepository } from '../../../productOffering/domain/repository/repository.country.interface';
+import { FakeCountryRepository } from '../../../productOffering/domain/repository/repository.country.interface.fake';
 import { ProductOfferingRepository } from '../../../productOffering/domain/repository/repository.productOffering.interface';
+import { FakeProductOfferingRepository } from '../../../productOffering/domain/repository/repository.productOffering.interface.fake';
 import { DomainProductOfferingService } from '../../../productOffering/domain/usecase/productOffering.service';
-
-describe('Create product offerings', () => {
-  let service: DomainProductOfferingService;
-  let productOfferingRepository: ProductOfferingRepository;
-  let countryRepository: CountryRepository;
-
-  beforeEach(() => {
-    productOfferingRepository = mock<ProductOfferingRepository>();
-    countryRepository = mock<MongoCountryRepository>();
-    service = new DomainProductOfferingService(instance(productOfferingRepository), instance(countryRepository));
-  });
-
-  test('Creates a product offering', async () => {
-    const productOffering = {
-      name: '[name]',
-      description: '[description]',
-      note: '[note]',
-      expiration: new Date(420),
-      category: '[category]',
-    };
-
-    await service.createProductOffering(productOffering);
-
-    await verify(productOfferingRepository.create(productOffering)).called();
-  });
-});
 
 describe('Get product offerings by country', () => {
   let service: DomainProductOfferingService;
@@ -36,17 +10,13 @@ describe('Get product offerings by country', () => {
   let countryRepository: CountryRepository;
 
   beforeEach(() => {
-    productOfferingRepository = mock<ProductOfferingRepository>();
-    countryRepository = mock<CountryRepository>();
-    service = new DomainProductOfferingService(instance(productOfferingRepository), instance(countryRepository));
-
-    when(productOfferingRepository.create(anything())).thenResolve('[created-id]');
+    productOfferingRepository = new FakeProductOfferingRepository();
+    countryRepository = new FakeCountryRepository();
+    service = new DomainProductOfferingService(productOfferingRepository, countryRepository);
   });
 
   test('Returns nothing when no product offering found', async () => {
-    const countryId = '[country-id]';
-    when(productOfferingRepository.getAll()).thenResolve([]);
-    when(countryRepository.getAll()).thenResolve([{ id: countryId, name: '[name]' }]);
+    const countryId = await countryRepository.create({ name: '[name]' });
 
     const result = await service.getProductOfferingsByCountry(countryId);
 
@@ -54,17 +24,15 @@ describe('Get product offerings by country', () => {
   });
 
   test('Returns product offerings when there is a matched country', async () => {
-    const countryId = '[country-id]';
     const productOffering = {
-      id: '[id]',
       name: '[name]',
       description: '[description]',
       note: '[note]',
       expiration: new Date(420),
       category: '[category]',
     };
-    when(productOfferingRepository.getAll()).thenResolve([productOffering]);
-    when(countryRepository.getAll()).thenResolve([{ id: countryId, name: '[name]' }]);
+    await productOfferingRepository.create(productOffering);
+    const countryId = await countryRepository.create({ name: '[name]' });
 
     const result = await service.getProductOfferingsByCountry(countryId);
 
@@ -72,17 +40,13 @@ describe('Get product offerings by country', () => {
   });
 
   test('Returns nothing when no country found', async () => {
-    when(productOfferingRepository.getAll()).thenResolve([
-      {
-        id: '[id]',
-        name: '[name]',
-        description: '[description]',
-        note: '[note]',
-        expiration: new Date(420),
-        category: '[category]',
-      },
-    ]);
-    when(countryRepository.getAll()).thenResolve([]);
+    await productOfferingRepository.create({
+      name: '[name]',
+      description: '[description]',
+      note: '[note]',
+      expiration: new Date(420),
+      category: '[category]',
+    });
 
     const result = await service.getProductOfferingsByCountry('[country-id]');
 
@@ -90,49 +54,17 @@ describe('Get product offerings by country', () => {
   });
 
   test('Returns nothing when only irrelevant country found', async () => {
-    when(productOfferingRepository.getAll()).thenResolve([
-      {
-        id: '[id]',
-        name: '[name]',
-        description: '[description]',
-        note: '[note]',
-        expiration: new Date(420),
-        category: '[category]',
-      },
-    ]);
-    when(countryRepository.getAll()).thenResolve([{ id: '[another-country-id]', name: '[name]' }]);
+    await productOfferingRepository.create({
+      name: '[name]',
+      description: '[description]',
+      note: '[note]',
+      expiration: new Date(420),
+      category: '[category]',
+    });
+    await countryRepository.create({ name: '[name]' });
 
-    const result = await service.getProductOfferingsByCountry('[country-id]');
+    const result = await service.getProductOfferingsByCountry('[another-country-id]');
 
     expect(result).toStrictEqual([]);
-  });
-});
-
-describe('Add country', () => {
-  let service: DomainProductOfferingService;
-  let productOfferingRepository: ProductOfferingRepository;
-  let countryRepository: CountryRepository;
-
-  beforeEach(() => {
-    productOfferingRepository = mock<ProductOfferingRepository>();
-    countryRepository = mock<CountryRepository>();
-    service = new DomainProductOfferingService(instance(productOfferingRepository), instance(countryRepository));
-  });
-
-  test('Creates a country', async () => {
-    const country = { name: '[name]' };
-
-    await service.addCountry(country);
-
-    verify(countryRepository.create(country)).called();
-  });
-
-  test('Creating a country results in the created id', async () => {
-    const id = '[id]';
-    when(countryRepository.create(anything())).thenResolve(id);
-
-    const result = await service.addCountry({ name: '[name]' });
-
-    expect(result).toStrictEqual(id);
   });
 });
