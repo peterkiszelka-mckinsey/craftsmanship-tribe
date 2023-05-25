@@ -4,6 +4,7 @@ export type ProductOffering = {
   readonly description: string;
   readonly note: string;
   readonly expiration: Date;
+  readonly category: string;
 };
 
 export type ProductOfferingCreate = {
@@ -11,6 +12,7 @@ export type ProductOfferingCreate = {
   readonly description: string;
   readonly note: string;
   readonly expiration: Date;
+  readonly category: string;
 };
 
 export type Country = {

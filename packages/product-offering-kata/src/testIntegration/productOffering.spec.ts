@@ -26,7 +26,8 @@ describe('Product offering integration tests', () => {
       name: '[name]',
       description: '[description]',
       note: '[note]',
-      expiration: new Date(),
+      expiration: new Date(420),
+      category: '[category]',
     });
 
     const result = await service.getProductOfferingsByCountry('[country-id]');
@@ -35,7 +36,13 @@ describe('Product offering integration tests', () => {
   });
 
   test('Getting product offerings by country results in the created product offering', async () => {
-    const productOffering = { name: '[name]', description: '[description]', note: '[note]', expiration: new Date() };
+    const productOffering = {
+      name: '[name]',
+      description: '[description]',
+      note: '[note]',
+      expiration: new Date(420),
+      category: '[category]',
+    };
     const productOfferingId = await service.createProductOffering(productOffering);
     const countryId = await service.addCountry({ name: '[country-name]' });
 

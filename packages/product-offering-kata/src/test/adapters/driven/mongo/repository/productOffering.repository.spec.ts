@@ -18,7 +18,13 @@ describe('Product offerings', () => {
   });
 
   test('Creates a product offering', async () => {
-    const productOffering = { name: '[name]', description: '[description]', note: '[note]', expiration: new Date(420) };
+    const productOffering = {
+      name: '[name]',
+      description: '[description]',
+      note: '[note]',
+      expiration: new Date(420),
+      category: '[category]',
+    };
 
     await repository.create(productOffering);
     const result = await repository.getAll();
@@ -32,12 +38,14 @@ describe('Product offerings', () => {
       description: '[description]',
       note: '[note]',
       expiration: new Date(420),
+      category: '[category]',
     });
     await repository.create({
       name: '[name]',
       description: '[description]',
       note: '[note]',
       expiration: new Date(420),
+      category: '[category]',
     });
 
     const result = await repository.getAll();

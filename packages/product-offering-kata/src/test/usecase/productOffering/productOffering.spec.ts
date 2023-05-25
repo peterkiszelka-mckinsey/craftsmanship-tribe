@@ -16,7 +16,13 @@ describe('Create product offerings', () => {
   });
 
   test('Creates a product offering', async () => {
-    const productOffering = { name: '[name]', description: '[description]', note: '[note]', expiration: new Date(420) };
+    const productOffering = {
+      name: '[name]',
+      description: '[description]',
+      note: '[note]',
+      expiration: new Date(420),
+      category: '[category]',
+    };
 
     await service.createProductOffering(productOffering);
 
@@ -55,6 +61,7 @@ describe('Get product offerings by country', () => {
       description: '[description]',
       note: '[note]',
       expiration: new Date(420),
+      category: '[category]',
     };
     when(productOfferingRepository.getAll()).thenResolve([productOffering]);
     when(countryRepository.getAll()).thenResolve([{ id: countryId, name: '[name]' }]);
@@ -66,7 +73,14 @@ describe('Get product offerings by country', () => {
 
   test('Returns nothing when no country found', async () => {
     when(productOfferingRepository.getAll()).thenResolve([
-      { id: '[id]', name: '[name]', description: '[description]', note: '[note]', expiration: new Date(420) },
+      {
+        id: '[id]',
+        name: '[name]',
+        description: '[description]',
+        note: '[note]',
+        expiration: new Date(420),
+        category: '[category]',
+      },
     ]);
     when(countryRepository.getAll()).thenResolve([]);
 
@@ -77,7 +91,14 @@ describe('Get product offerings by country', () => {
 
   test('Returns nothing when only irrelevant country found', async () => {
     when(productOfferingRepository.getAll()).thenResolve([
-      { id: '[id]', name: '[name]', description: '[description]', note: '[note]', expiration: new Date(420) },
+      {
+        id: '[id]',
+        name: '[name]',
+        description: '[description]',
+        note: '[note]',
+        expiration: new Date(420),
+        category: '[category]',
+      },
     ]);
     when(countryRepository.getAll()).thenResolve([{ id: '[another-country-id]', name: '[name]' }]);
 

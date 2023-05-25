@@ -4,6 +4,7 @@ export type RepositoryProductOffering = {
   readonly description: string;
   readonly note: string;
   readonly expiration: Date;
+  readonly category: string;
 };
 
 export type RepositoryProductOfferingCreate = {
@@ -11,4 +12,5 @@ export type RepositoryProductOfferingCreate = {
   readonly description: string;
   readonly note: string;
   readonly expiration: Date;
+  readonly category: string;
 };

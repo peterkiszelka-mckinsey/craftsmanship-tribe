@@ -11,6 +11,7 @@ export const ProductOfferingSchema = new Schema<RepositoryProductOffering>({
   description: { type: String, required: true },
   note: { type: String, required: true },
   expiration: { type: Date, required: true },
+  category: { type: String, required: true },
 });
 
 export const CountryModel = mongoose.model('RepositoryCountry', CountrySchema);
