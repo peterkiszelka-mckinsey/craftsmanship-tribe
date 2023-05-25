@@ -1,5 +1,6 @@
 import { MongoCountryRepository } from '../productOffering/adapters/driven/mongo/repository/mongo.country.repository';
 import { MongoProductOfferingRepository } from '../productOffering/adapters/driven/mongo/repository/mongo.productOffering.repository';
+import { createProductOffering } from '../productOffering/domain/usecase/productOffering.model.fixtures';
 import { DomainProductOfferingService } from '../productOffering/domain/usecase/productOffering.service';
 import { TestDbHandler } from '../testDbHandler';
 
@@ -22,13 +23,7 @@ describe('Product offering integration tests', () => {
   });
 
   test('Getting product offerings by country results in an empty response when no matching countries exist', async () => {
-    await service.createProductOffering({
-      name: '[name]',
-      description: '[description]',
-      note: '[note]',
-      expiration: new Date(420),
-      category: '[category]',
-    });
+    await service.createProductOffering(createProductOffering({}));
 
     const result = await service.getProductOfferingsByCountry('[country-id]');
 
@@ -36,13 +31,7 @@ describe('Product offering integration tests', () => {
   });
 
   test('Getting product offerings by country results in the created product offering', async () => {
-    const productOffering = {
-      name: '[name]',
-      description: '[description]',
-      note: '[note]',
-      expiration: new Date(420),
-      category: '[category]',
-    };
+    const productOffering = createProductOffering({});
     const productOfferingId = await service.createProductOffering(productOffering);
     const countryId = await service.addCountry({ name: '[country-name]' });
 
