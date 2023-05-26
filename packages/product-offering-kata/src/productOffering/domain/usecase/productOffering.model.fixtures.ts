@@ -1,4 +1,4 @@
-import { ProductOfferingCreate } from './productOffering.model';
+import { CountryCreate, ProductOfferingCreate } from './productOffering.model';
 
 export const createProductOffering = ({
   name = '[name]',
@@ -18,4 +18,8 @@ export const createProductOffering = ({
   price?: number;
 }): ProductOfferingCreate => {
   return { name, description, note, expiration, category, subtitle, price };
+};
+
+export const createCountry = ({ name = '[name]' }: { name?: string }): CountryCreate => {
+  return { name };
 };

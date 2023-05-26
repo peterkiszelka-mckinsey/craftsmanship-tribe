@@ -1,7 +1,7 @@
 import { CountryRepository } from '../repository/repository.country.interface';
 import { ProductOfferingRepository } from '../repository/repository.productOffering.interface';
 import { ProductOfferingService } from './productOffering.interface';
-import { Country, ProductOffering, ProductOfferingCreate } from './productOffering.model';
+import { CountryCreate, ProductOffering, ProductOfferingCreate } from './productOffering.model';
 
 type Id = string;
 
@@ -26,7 +26,7 @@ export class DomainProductOfferingService implements ProductOfferingService {
     return await this.productOfferingRepository.getAll();
   }
 
-  async addCountry(country: Country): Promise<Id> {
+  async addCountry(country: CountryCreate): Promise<Id> {
     return await this.countryRepository.create(country);
   }
 }

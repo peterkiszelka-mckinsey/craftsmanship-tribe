@@ -19,6 +19,6 @@ export type ProductOfferingCreate = {
   readonly price: number;
 };
 
-export type Country = {
+export type CountryCreate = {
   readonly name: string;
 };

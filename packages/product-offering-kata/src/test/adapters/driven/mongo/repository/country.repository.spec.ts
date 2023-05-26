@@ -1,4 +1,5 @@
 import { MongoCountryRepository } from '../../../../../productOffering/adapters/driven/mongo/repository/mongo.country.repository';
+import { createRepositoryCountry } from '../../../../../productOffering/domain/repository/repository.country.model.fixtures';
 import { TestDbHandler } from '../../../../../testDbHandler';
 
 describe('Countries', () => {
@@ -18,7 +19,7 @@ describe('Countries', () => {
   });
 
   test('Creates a name country', async () => {
-    const country = { name: '[name]' };
+    const country = createRepositoryCountry({});
 
     await repository.create(country);
     const result = await repository.getAll();
@@ -27,8 +28,8 @@ describe('Countries', () => {
   });
 
   test('Gets all created countries', async () => {
-    await repository.create({ name: '[name]' });
-    await repository.create({ name: '[name]' });
+    await repository.create(createRepositoryCountry({}));
+    await repository.create(createRepositoryCountry({}));
 
     const result = await repository.getAll();
 

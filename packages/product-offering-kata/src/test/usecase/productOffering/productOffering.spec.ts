@@ -2,7 +2,10 @@ import { CountryRepository } from '../../../productOffering/domain/repository/re
 import { FakeCountryRepository } from '../../../productOffering/domain/repository/repository.country.interface.fake';
 import { ProductOfferingRepository } from '../../../productOffering/domain/repository/repository.productOffering.interface';
 import { FakeProductOfferingRepository } from '../../../productOffering/domain/repository/repository.productOffering.interface.fake';
-import { createProductOffering } from '../../../productOffering/domain/usecase/productOffering.model.fixtures';
+import {
+  createCountry,
+  createProductOffering,
+} from '../../../productOffering/domain/usecase/productOffering.model.fixtures';
 import { DomainProductOfferingService } from '../../../productOffering/domain/usecase/productOffering.service';
 
 describe('Get product offerings by country', () => {
@@ -17,7 +20,7 @@ describe('Get product offerings by country', () => {
   });
 
   test('Returns nothing when no product offering found', async () => {
-    const countryId = await countryRepository.create({ name: '[name]' });
+    const countryId = await service.addCountry(createCountry({}));
 
     const result = await service.getProductOfferingsByCountry(countryId);
 
@@ -26,8 +29,8 @@ describe('Get product offerings by country', () => {
 
   test('Returns product offerings when there is a matched country', async () => {
     const productOffering = createProductOffering({});
-    await productOfferingRepository.create(productOffering);
-    const countryId = await countryRepository.create({ name: '[name]' });
+    await service.createProductOffering(productOffering);
+    const countryId = await service.addCountry(createCountry({}));
 
     const result = await service.getProductOfferingsByCountry(countryId);
 
@@ -35,7 +38,7 @@ describe('Get product offerings by country', () => {
   });
 
   test('Returns nothing when no country found', async () => {
-    await productOfferingRepository.create(createProductOffering({}));
+    await service.createProductOffering(createProductOffering({}));
 
     const result = await service.getProductOfferingsByCountry('[country-id]');
 
@@ -43,8 +46,8 @@ describe('Get product offerings by country', () => {
   });
 
   test('Returns nothing when only irrelevant country found', async () => {
-    await productOfferingRepository.create(createProductOffering({}));
-    await countryRepository.create({ name: '[name]' });
+    await service.createProductOffering(createProductOffering({}));
+    await service.addCountry(createCountry({}));
 
     const result = await service.getProductOfferingsByCountry('[another-country-id]');
 

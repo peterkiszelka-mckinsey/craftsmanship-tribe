@@ -1,4 +1,4 @@
-import { Country, ProductOffering, ProductOfferingCreate } from './productOffering.model';
+import { CountryCreate, ProductOffering, ProductOfferingCreate } from './productOffering.model';
 
 type Id = string;
 
@@ -7,5 +7,5 @@ export interface ProductOfferingService {
 
   getProductOfferingsByCountry(countryId: string): Promise<ProductOffering[]>;
 
-  addCountry(country: Country): Promise<Id>;
+  addCountry(country: CountryCreate): Promise<Id>;
 }
