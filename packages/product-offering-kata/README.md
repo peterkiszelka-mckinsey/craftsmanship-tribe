@@ -167,7 +167,7 @@ By utilizing these mocking capabilities, you can effectively simulate and contro
 external services during unit testing, allowing you to isolate the code under test and focus on specific scenarios 
 or conditions.
 
-#### 3) Extend product offerings with categories
+#### ~~3) Extend product offerings with categories~~
 
 In order to enhance the portfolio overview, the product offering service requires a new behavior that involves exposing 
 categories. Up until now, the system has been unaware of any categories, so they need to be introduced across all 
@@ -178,20 +178,20 @@ overview. Customers will have a clearer understanding of how the product offerin
 through different categories to find relevant products. This addition will provide a more structured and intuitive user 
 experience, ultimately improving customer satisfaction and engagement with the Bank's portfolio.
 
-#### 4) Instead of mocks, validate the implementation with unit tests using fake implementations
+#### 4) ~~Instead of mocks, validate the implementation with unit tests using fake implementations~~
 
 As a practice, let's refactor the existing test suite by replacing the mocks with fake implementations of the repository 
 interfaces. By doing so, we will conduct black box testing on the domain service without relying on any external
 dependencies.
 
-#### 5) Extend product offerings with subtitle
+#### 5) ~~Extend product offerings with subtitle~~
 
 We have observed the challenges that arise when adding a new feature to a test suite that utilizes mocks.
 
 Now, let's consider the scenario where we need to introduce a new field to the system and incorporate it into a test 
 suite that employs fake implementations.
 
-#### 6) Use fixtures over definitions in tests
+#### 6) ~~Use fixtures over definitions in tests~~
 
 Fixtures are a valuable tool in making tests more readable and enabling a focus on behavior. 
 They also help decouple tests from underlying models by providing predefined data structures.
@@ -212,7 +212,7 @@ By utilizing this fixture, tests can easily create country objects with differen
 create JSON objects each time. This promotes readability, reduces repetition, and allows for more focused testing on 
 the desired behavior.
 
-#### 7) Extend product offerings with price
+#### 7) ~~Extend product offerings with price~~
 
 We've seen the complexity of adding a new feature to a test suite that uses plenty of json objects.
 
