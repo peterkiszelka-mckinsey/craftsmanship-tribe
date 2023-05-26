@@ -120,7 +120,7 @@ This kata requires the developer to implement a product offering interface by ex
 As a base implementation, adapters (repositories) are available to handle recommendations and countries using MongoDB.
 On top of that, steps 1) and 2) have already been implemented.  
 
-#### 1) Implement the required features with integration tests
+#### ~~1) Implement the required features with integration tests~~
 
 In this step, the goal is to implement the user journey for the MVP and create integration tests to validate the entire 
 journey from start to finish.
@@ -139,7 +139,7 @@ By performing end-to-end integration testing, any issues or bugs that may arise 
 identified and addressed early in the development process, ensuring a reliable and seamless experience for the Bank's 
 customers.
 
-#### 2) Validate the implementation with unit tests using mocks
+#### ~~2) Validate the implementation with unit tests using mocks~~
 
 To facilitate mocking in unit tests using `ts-mockito`, you can follow the example code fragment provided:
 
